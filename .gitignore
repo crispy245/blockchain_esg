@@ -7,7 +7,7 @@ __pycache__/
 *.so
 .Python
 env/
-venv/
+myenv/
 ENV/
 
 # Flask
