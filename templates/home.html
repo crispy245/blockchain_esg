@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Fashion Experiment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Sustainable Fashion Experiment</h1>
+            <p class="subtitle">Choose a garment and view different verification methods</p>
+        </header>
+
+        <div class="garment-grid">
+            {% for garment_id, garment in garments.items() %}
+            <div class="garment-card">
+                <img src="{{ garment.image }}" alt="{{ garment.name }}" class="garment-image">
+                <h2>{{ garment.name }}</h2>
+                <p class="price">{{ garment.price }}</p>
+                <p class="description">{{ garment.description }}</p>
+                
+                <div class="version-buttons">
+                    <a href="/version-b/{{ garment_id }}" class="btn btn-version-b">
+                        Version B<br>
+                        <span class="btn-subtitle">Blockchain Verified</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

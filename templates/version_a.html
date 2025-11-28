@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ garment.name }} - Version A</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="back-link">← Back to Home</a>
+            <div class="version-badge version-a-badge">Version A: Traditional Claims</div>
+        </header>
+
+        <div class="product-layout">
+            <div class="product-image-section">
+                <img src="{{ garment.image }}" alt="{{ garment.name }}" class="product-image">
+            </div>
+
+            <div class="product-details">
+                <h1>{{ garment.name }}</h1>
+                <p class="price-large">{{ garment.price }}</p>
+                <p class="product-description">{{ garment.description }}</p>
+
+                <div class="sustainability-section">
+                    <h2>🌍 Our Sustainability Commitment</h2>
+                    <p class="commitment-text">
+                        We are committed to producing garments that meet the highest environmental, 
+                        social, and governance (ESG) standards. This product follows green standards 
+                        throughout its entire supply chain.
+                    </p>
+
+                    <div class="claims-box">
+                        <h3>✓ Sustainability Features</h3>
+                        <ul class="claims-list">
+                            {% for claim in garment.esg_claims %}
+                            <li>{{ claim }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="certification-badges">
+                        <div class="badge">🏆 ESG Certified</div>
+                        <div class="badge">♻️ Eco-Friendly</div>
+                        <div class="badge">✓ Verified Green</div>
+                    </div>
+
+                    <p class="trust-text">
+                        <em>Trust our commitment to sustainability. We adhere to international 
+                        environmental standards and regularly audit our supply chain to ensure 
+                        compliance with green manufacturing practices.</em>
+                    </p>
+                </div>
+
+                <button class="btn btn-primary btn-large">Add to Cart</button>
+                
+                <div class="comparison-link">
+                    <a href="/version-b/{{ garment_id }}" class="link">
+                        View Blockchain Verified Version →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

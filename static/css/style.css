@@ -1,0 +1,579 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #718096;
+}
+
+.back-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #2b6cb0;
+}
+
+.version-badge {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+.version-a-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.version-b-badge {
+    background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
+    color: white;
+}
+
+/* Home Page - Garment Grid */
+.garment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.garment-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #e2e8f0;
+}
+
+.garment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.garment-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.garment-card h2 {
+    padding: 20px 20px 10px;
+    color: #2d3748;
+    font-size: 1.5em;
+}
+
+.price {
+    padding: 0 20px;
+    font-size: 1.5em;
+    color: #48bb78;
+    font-weight: 700;
+}
+
+.description {
+    padding: 10px 20px 20px;
+    color: #718096;
+}
+
+.version-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.btn-version-a {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-version-a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-version-b {
+    background: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
+    color: white;
+}
+
+.btn-version-b:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+}
+
+.btn-subtitle {
+    font-size: 0.75em;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Product Page Layout */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.product-image-section {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-details h1 {
+    font-size: 2em;
+    color: #2d3748;
+    margin-bottom: 10px;
+}
+
+.price-large {
+    font-size: 2em;
+    color: #48bb78;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    font-size: 1.1em;
+    color: #718096;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* Version A - Traditional Claims */
+.sustainability-section {
+    background: #f7fafc;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.sustainability-section h2 {
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+.commitment-text {
+    color: #4a5568;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.claims-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #48bb78;
+}
+
+.claims-box h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+.claims-list {
+    list-style: none;
+}
+
+.claims-list li {
+    padding: 10px 0;
+    padding-left: 30px;
+    color: #4a5568;
+    position: relative;
+}
+
+.claims-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #48bb78;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.certification-badges {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.trust-text {
+    color: #718096;
+    font-style: italic;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* Version B - Blockchain */
+.blockchain-section {
+    margin-bottom: 30px;
+}
+
+.blockchain-section h2 {
+    color: #2d3748;
+    margin-bottom: 15px;
+}
+
+.blockchain-intro {
+    color: #4a5568;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.blockchain-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.blockchain-icon {
+    font-size: 3em;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-info strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+code.hash {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    display: block;
+    word-break: break-all;
+    font-family: 'Courier New', monospace;
+}
+
+.timestamp {
+    margin-top: 8px;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.supply-chain-ledger {
+    background: #f7fafc;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.supply-chain-ledger h3 {
+    color: #2d3748;
+    margin-bottom: 25px;
+}
+
+.ledger-entry {
+    background: white;
+    border-left: 4px solid #4facfe;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stage-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.stage-number {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.stage-header h4 {
+    color: #2d3748;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.location {
+    color: #718096;
+    font-size: 0.9em;
+}
+
+.stage-details {
+    padding-left: 55px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row.renewable {
+    background: #f0fff4;
+    margin: 8px -10px;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.value {
+    color: #2d3748;
+}
+
+.hash-row {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid #e2e8f0;
+}
+
+code.hash-small {
+    background: #edf2f7;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75em;
+    font-family: 'Courier New', monospace;
+    color: #4a5568;
+}
+
+.carbon-summary {
+    background: #f0fff4;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    border: 2px solid #48bb78;
+}
+
+.carbon-summary h3 {
+    color: #2d3748;
+    margin-bottom: 20px;
+}
+
+.carbon-box {
+    text-align: center;
+}
+
+.carbon-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stat-value {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #48bb78;
+}
+
+.stat-label {
+    color: #4a5568;
+    font-size: 0.9em;
+}
+
+.carbon-offset {
+    color: #2f855a;
+    font-weight: 600;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+}
+
+.blockchain-verify {
+    background: #edf2f7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.verify-text {
+    color: #4a5568;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    font-size: 1.1em;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+}
+
+.btn-secondary {
+    background: white;
+    color: #4299e1;
+    border: 2px solid #4299e1;
+}
+
+.btn-secondary:hover {
+    background: #4299e1;
+    color: white;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.2em;
+}
+
+.comparison-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .product-image-section {
+        position: relative;
+        top: 0;
+    }
+
+    .garment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .version-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .stage-details {
+        padding-left: 0;
+    }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ garment.name }} - Version B</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container"> 
+
+        <div class="product-layout">
+            <div class="product-image-section">
+                <img src="{{ garment.image }}" alt="{{ garment.name }}" class="product-image">
+            </div>
+
+            <div class="product-details">
+                <h1>{{ garment.name }}</h1>
+
+                <div class="blockchain-section">
+                    <h2>🔗 Blockchain Verified Supply Chain</h2>
+                    <p class="blockchain-intro">
+                        Every step of this garment's journey is recorded on an immutable blockchain 
+                        ledger, providing transparent proof of our sustainability claims.
+                    </p>
+
+                    <div class="blockchain-header">
+                        <div class="blockchain-icon">⛓️</div>
+                        <div class="transaction-info">
+                            <strong>Transaction Hash:</strong>
+                            <code class="hash">{{ garment.blockchain_data.transaction_hash }}</code>
+                            <div class="timestamp">{{ garment.blockchain_data.timestamp }}</div>
+                        </div>
+                    </div>
+
+                    <div class="supply-chain-ledger">
+                        <h3>📋 Complete Supply Chain Ledger</h3>
+                        
+                        {% for stage in garment.blockchain_data.supply_chain %}
+                        <div class="ledger-entry">
+                            <div class="stage-header">
+                                <span class="stage-number">{{ loop.index }}</span>
+                                <div>
+                                    <h4>{{ stage.stage }}</h4>
+                                    <p class="location">📍 {{ stage.location }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stage-details">
+                                <div class="detail-row">
+                                    <span class="label">Verification:</span>
+                                    <span class="value">{{ stage.verification }}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">Carbon Footprint:</span>
+                                    <span class="value">{{ stage.carbon_footprint }}</span>
+                                </div>
+                                {% if stage.renewable_energy %}
+                                <div class="detail-row renewable">
+                                    <span class="label">Energy Source:</span>
+                                    <span class="value">⚡ {{ stage.renewable_energy }}</span>
+                                </div>
+                                {% endif %}
+                                {% if stage.water_saved %}
+                                <div class="detail-row renewable">
+                                    <span class="label">Water Saved:</span>
+                                    <span class="value">💧 {{ stage.water_saved }}</span>
+                                </div>
+                                {% endif %}
+                                <div class="detail-row hash-row">
+                                    <span class="label">Block Hash:</span>
+                                    <code class="hash-small">{{ stage.hash }}</code>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="carbon-summary">
+                        <h3>🌱 Carbon Impact Summary</h3>
+                        <div class="carbon-box">
+                            <div class="carbon-stat">
+                                <span class="stat-value">{{ garment.blockchain_data.total_carbon }}</span>
+                                <span class="stat-label">Total Carbon Footprint</span>
+                            </div>
+                            <div class="carbon-offset">
+                                ✓ {{ garment.blockchain_data.carbon_offset }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blockchain-verify">
+                        <p class="verify-text">
+                            🔒 <strong>Immutable Proof:</strong> All data recorded on the blockchain 
+                            cannot be altered or deleted, ensuring complete transparency and accountability.
+                        </p>
+                        <a href="https://sepolia.etherscan.io/address/0x1b0c842d7091d663ea44afdc11fdcef0cb9e9998" 
+                        class="btn btn-secondary">
+                            Verify on Blockchain Explorer
+                        </a>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
