@@ -4,104 +4,405 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ garment.name }} - Version B</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            color: #10b981;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Left Side - Product Summary */
+        .product-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .product-summary h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+            display: inline-block;
+        }
+
+        .product-info {
+            margin-top: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .info-value {
+            color: #555;
+        }
+
+        /* Right Side - Blockchain Section */
+        .blockchain-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .blockchain-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .blockchain-icon {
+            font-size: 24px;
+        }
+
+        .blockchain-title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .blockchain-intro {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .transaction-box {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .transaction-box .label {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .transaction-box .hash {
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .transaction-box .timestamp {
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        .chain-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .ledger-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ledger-entry {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .stage-number {
+            background: #10b981;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .stage-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .stage-location {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stage-location::before {
+            content: "📍 ";
+        }
+
+        .stage-details {
+            margin-left: 43px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .detail-value.hash {
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+            color: #7c3aed;
+            background: #f3f0ff;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .renewable {
+            color: #10b981;
+        }
+
+        /* Traceability Summary */
+        .traceability-summary {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .traceability-summary h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-decoration: underline;
+        }
+
+        .traceability-summary p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .verify-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .verify-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container"> 
+    <div class="container">
+        <a href="#" class="back-link">← Back to Home</a>
 
         <div class="product-layout">
-            <div class="product-image-section">
+            <!-- Left Side: Product Summary -->
+            <div class="product-summary">
                 <img src="{{ garment.image }}" alt="{{ garment.name }}" class="product-image">
-            </div>
-
-            <div class="product-details">
-                <h1>{{ garment.name }}</h1>
-
-                <div class="blockchain-section">
-                    <h2>🔗 Blockchain Verified Supply Chain</h2>
-                    <p class="blockchain-intro">
-                        Every step of this garment's journey is recorded on an immutable blockchain 
-                        ledger, providing transparent proof of our sustainability claims.
-                    </p>
-
-                    <div class="blockchain-header">
-                        <div class="blockchain-icon">⛓️</div>
-                        <div class="transaction-info">
-                            <strong>Transaction Hash:</strong>
-                            <code class="hash">{{ garment.blockchain_data.transaction_hash }}</code>
-                            <div class="timestamp">{{ garment.blockchain_data.timestamp }}</div>
-                        </div>
+                
+                <h2>Product Summary (plain t-shirt)</h2>
+                
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">Product ID:</span>
+                        <span class="info-value">{{ garment.id }}</span>
                     </div>
-
-                    <div class="supply-chain-ledger">
-                        <h3>📋 Complete Supply Chain Ledger</h3>
-                        
-                        {% for stage in garment.blockchain_data.supply_chain %}
-                        <div class="ledger-entry">
-                            <div class="stage-header">
-                                <span class="stage-number">{{ loop.index }}</span>
-                                <div>
-                                    <h4>{{ stage.stage }}</h4>
-                                    <p class="location">📍 {{ stage.location }}</p>
-                                </div>
-                            </div>
-                            
-                            <div class="stage-details">
-                                <div class="detail-row">
-                                    <span class="label">Verification:</span>
-                                    <span class="value">{{ stage.verification }}</span>
-                                </div>
-                                <div class="detail-row">
-                                    <span class="label">Carbon Footprint:</span>
-                                    <span class="value">{{ stage.carbon_footprint }}</span>
-                                </div>
-                                {% if stage.renewable_energy %}
-                                <div class="detail-row renewable">
-                                    <span class="label">Energy Source:</span>
-                                    <span class="value">⚡ {{ stage.renewable_energy }}</span>
-                                </div>
-                                {% endif %}
-                                {% if stage.water_saved %}
-                                <div class="detail-row renewable">
-                                    <span class="label">Water Saved:</span>
-                                    <span class="value">💧 {{ stage.water_saved }}</span>
-                                </div>
-                                {% endif %}
-                                <div class="detail-row hash-row">
-                                    <span class="label">Block Hash:</span>
-                                    <code class="hash-small">{{ stage.hash }}</code>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                    <div class="info-row">
+                        <span class="info-label">Material:</span>
+                        <span class="info-value">100% organic cotton</span>
                     </div>
-
-                    <div class="carbon-summary">
-                        <h3>🌱 Carbon Impact Summary</h3>
-                        <div class="carbon-box">
-                            <div class="carbon-stat">
-                                <span class="stat-value">{{ garment.blockchain_data.total_carbon }}</span>
-                                <span class="stat-label">Total Carbon Footprint</span>
-                            </div>
-                            <div class="carbon-offset">
-                                ✓ {{ garment.blockchain_data.carbon_offset }}
-                            </div>
-                        </div>
+                    <div class="info-row">
+                        <span class="info-label">Color:</span>
+                        <span class="info-value">White</span>
                     </div>
-
-                    <div class="blockchain-verify">
-                        <p class="verify-text">
-                            🔒 <strong>Immutable Proof:</strong> All data recorded on the blockchain 
-                            cannot be altered or deleted, ensuring complete transparency and accountability.
-                        </p>
-                        <a href="https://sepolia.etherscan.io/address/0x1b0c842d7091d663ea44afdc11fdcef0cb9e9998" 
-                        class="btn btn-secondary">
-                            Verify on Blockchain Explorer
-                        </a>
+                    <div class="info-row">
+                        <span class="info-label">Fit:</span>
+                        <span class="info-value">Regular Unisex</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Price:</span>
+                        <span class="info-value">NT$350</span>
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-large">Add to Cart</button>
+                <div class="traceability-summary">
+                    <h4>Traceability Summary</h4>
+                    <p>This t-shirt is made from 100% organic cotton. The information above is recorded on a blockchain-based system, meaning each step in the supply chain is time-stamped and cannot be altered. You can see where the cotton was grown, how it was processed, where it was manufactured, and how it reached the store.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Blockchain Verified Supply Chain -->
+            <div class="blockchain-section">
+                <div class="blockchain-header">
+                    <span class="blockchain-icon">🔗</span>
+                    <h2 class="blockchain-title">Blockchain Verified Supply Chain</h2>
+                </div>
+
+                <p class="blockchain-intro">
+                    Every step of this garment's journey is recorded on an immutable blockchain 
+                    ledger, providing transparent proof of our sustainability claims.
+                </p>
+
+                <div class="transaction-box">
+                    <span class="chain-icon">⛓️</span>
+                    <div class="label">Transaction Hash:</div>
+                    <div class="hash">{{ garment.blockchain_data.transaction_hash }}</div>
+                    <div class="timestamp">{{ garment.blockchain_data.timestamp }}</div>
+                </div>
+
+                <div class="ledger-section">
+                    <h3>📋 Complete Supply Chain Ledger</h3>
+                    
+                    {% for stage in garment.blockchain_data.supply_chain %}
+                    <div class="ledger-entry">
+                        <div class="stage-header">
+                            <span class="stage-number">{{ loop.index }}</span>
+                            <div>
+                                <div class="stage-title">{{ stage.stage }}</div>
+                                <div class="stage-location">{{ stage.location }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stage-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Verification:</span>
+                                <span class="detail-value">{{ stage.verification }}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Carbon Footprint:</span>
+                                <span class="detail-value">{{ stage.carbon_footprint }}</span>
+                            </div>
+                            {% if stage.renewable_energy %}
+                            <div class="detail-row">
+                                <span class="detail-label">Energy Source:</span>
+                                <span class="detail-value renewable">⚡ {{ stage.renewable_energy }}</span>
+                            </div>
+                            {% endif %}
+                            {% if stage.water_saved %}
+                            <div class="detail-row">
+                                <span class="detail-label">Water Saved:</span>
+                                <span class="detail-value renewable">💧 {{ stage.water_saved }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="detail-row">
+                                <span class="detail-label">Block Hash:</span>
+                                <span class="detail-value hash">{{ stage.hash }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <a href="https://sepolia.etherscan.io/address/0x1b0c842d7091d663ea44afdc11fdcef0cb9e9998" 
+                   class="verify-link" target="_blank">
+                    🔒 Verify on Blockchain Explorer →
+                </a>
             </div>
         </div>
     </div>
