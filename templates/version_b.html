@@ -67,11 +67,40 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
         }
 
+        /* Logo styling: centered and cropped */
+        .brand-container {
+            width: 110px;
+            height: 110px; /* change this to control how much is shown vertically */
+            margin: 0 auto 25px;
+            overflow: hidden;
+            display: block;
+            border-radius: 6px; /* optional, remove if square crop desired */
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* crop from top/bottom while keeping center */
+            object-position: center;
+            display: block;
+        }
+
+        /* LARGER product image container */
+        .product-image-container {
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
         .product-image {
             width: 100%;
-            max-width: 300px;
+            max-width: 380px;
             border-radius: 8px;
-            margin-bottom: 30px;
             display: block;
         }
 
@@ -277,6 +306,26 @@
             line-height: 1.7;
         }
 
+        /* NEW: Bottom text section */
+        .bottom-text {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .bottom-text h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .bottom-text p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
         .verify-link {
             display: inline-block;
             margin-top: 20px;
@@ -304,7 +353,15 @@
         <div class="product-layout">
             <!-- Left Side: Product Summary -->
             <div class="product-summary">
-                <img src="{{ garment.image }}" alt="{{ garment.name }}" class="product-image">
+                <!-- Logo at top -->
+                <div class="brand-container">
+                    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Naturae Logo" class="brand-logo">
+                </div>
+
+                <!-- Larger product image container -->
+                <div class="product-image-container">
+                    <img src="{{ garment.image }}" alt="{{ garment.name }}" class="product-image">
+                </div>
                 
                 <h2>Product Summary (plain t-shirt)</h2>
                 
@@ -334,6 +391,13 @@
                 <div class="traceability-summary">
                     <h4>Traceability Summary</h4>
                     <p>This t-shirt is made from 100% organic cotton. The information above is recorded on a blockchain-based system, meaning each step in the supply chain is time-stamped and cannot be altered. You can see where the cotton was grown, how it was processed, where it was manufactured, and how it reached the store.</p>
+                </div>
+
+                <!-- NEW: Bottom text section -->
+                <div class="bottom-text">
+                    <h4>About Naturae</h4>
+                    <p>Naturae is a sustainability-driven fashion brand committed to creating everyday essentials with minimal environmental impact. Our philosophy is simple: quality, transparency, and responsibility. Every product we make is crafted using ethically sourced materials and environmentally conscious production methods.</p>
+                    <p style="margin-top: 12px;">We believe that consumers deserve honest information about where their clothes come from. That is why Naturae integrates blockchain-based traceability into our supply chain, allowing you to verify each step — from raw materials to final delivery.</p>
                 </div>
             </div>
 

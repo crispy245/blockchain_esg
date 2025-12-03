@@ -19,8 +19,6 @@ CONTRACT_ADDRESS = os.getenv('CONTRACT_ADDRESS')
 INFURA_URL = os.getenv('INFURA_URL')
 
 
-app = Flask(__name__)
-
 
 # ===== Contract ABI - This tells Python how to talk to your contract =====
 CONTRACT_ABI = [
