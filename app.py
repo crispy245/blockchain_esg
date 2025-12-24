@@ -5,7 +5,7 @@ Fill in your contract address and you're done!
 
 from flask import Flask, render_template, redirect, url_for
 from web3 import Web3
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 from dotenv import load_dotenv
 
@@ -108,9 +108,9 @@ def get_real_blockchain_data(product_id):
             
             stages.append(stage_info)
         
-        # Format timestamp
-        timestamp = datetime.fromtimestamp(product[1]).strftime('%Y-%m-%d %H:%M:%S UTC')
-        
+        # Format timestamp as timezone-aware UTC
+        timestamp = datetime.fromtimestamp(product[1], timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+
         return {
             'transaction_hash': CONTRACT_ADDRESS[:10] + '...' + CONTRACT_ADDRESS[-8:],
             'timestamp': timestamp,
@@ -118,11 +118,18 @@ def get_real_blockchain_data(product_id):
             'total_carbon': product[2],
             'carbon_offset': product[3]
         }
-    
+
     except Exception as e:
         print(f"❌ Error reading from blockchain: {e}")
         print(f"   Make sure CONTRACT_ADDRESS is correct!")
-        return None
+        # Return a safe default structure so templates don't fail when blockchain access is unavailable
+        return {
+            'transaction_hash': 'N/A',
+            'timestamp': 'N/A',
+            'supply_chain': [],
+            'total_carbon': 'N/A',
+            'carbon_offset': 'N/A'
+        }
 
 
 # Static garment info

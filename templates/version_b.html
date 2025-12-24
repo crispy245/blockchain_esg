@@ -432,6 +432,25 @@
                                 <div class="stage-location">{{ stage.location }}</div>
                             </div>
                         </div>
+                        <!-- Hard-coded explanatory paragraphs mapped to each stage index -->
+                        <div class="stage-paragraph" style="margin-top:12px;color:#444;font-size:14px;line-height:1.6;">
+                            {% if loop.index == 1 %}
+                            <strong>1. Cotton Farming (Gujarat, India)</strong>
+                            <p>The cotton used in this t-shirt was grown on certified organic farms in Gujarat, India. No synthetic pesticides or chemical fertilizers were used during cultivation. The cotton was harvested during the 2025 growing season and carefully separated from conventional cotton to maintain its organic integrity. Farmers followed environmentally responsible practices that protect soil health and local ecosystems.</p>
+                            {% elif loop.index == 2 %}
+                            <strong>2. Fabric Weaving (Dhaka, Bangladesh)</strong>
+                            <p>After harvesting, the organic cotton was transported to a textile facility in Dhaka, Bangladesh, where it was spun into yarn and woven into fabric. This facility operates under Fair Trade standards, ensuring safe working conditions, fair wages, and ethical labor practices. The weaving process focused on minimizing waste while maintaining fabric durability and quality.</p>
+                            {% elif loop.index == 3 %}
+                            <strong>3. Dyeing &amp; Finishing (Colombo, Sri Lanka)</strong>
+                            <p>The woven fabric was then sent to a dyeing and finishing facility in Colombo, Sri Lanka. Low-impact, non-toxic dyes were used to reduce water pollution and protect worker health. The finishing process complied with international safety standards, ensuring the final fabric is free from harmful substances and safe for everyday wear.</p>
+                            {% elif loop.index == 4 %}
+                            <strong>4. Garment Manufacturing (Hanoi, Vietnam)</strong>
+                            <p>The finished fabric was assembled into t-shirts at a manufacturing facility in Hanoi, Vietnam. This factory is certified under the SA8000 Social Accountability standard, which means it follows strict rules to protect workers’ rights, including safe working conditions, fair wages, and no child or forced labor. The production process focused on efficiency and quality while keeping carbon emissions low.</p>
+                            {% elif loop.index == 5 %}
+                            <strong>5. Distribution and Retail (Taiwan)</strong>
+                            <p>After manufacturing, the t-shirts were shipped to Taiwan for distribution and retail. Naturea uses electric delivery vehicles, operates zero-waste retail stores, and stores products in a solar-powered warehouse to reduce environmental impact. This final stage focuses on delivering the product efficiently while minimizing emissions and energy use.</p>
+                            {% endif %}
+                        </div>
                         
                         <div class="stage-details">
                             <div class="detail-row">
